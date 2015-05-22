@@ -1,0 +1,5 @@
+<div class="search">
+    <form role="search" action="{% url 'wagtailsearch_search' %}" method="get">
+        <input type="text" class="form-control" name="q" placeholder="Search…" {% if query_string %} value="{{ query_string }}"{% else %} value="{{ request.GET.q}}{% endif %}" />
+    </form>
+</div>

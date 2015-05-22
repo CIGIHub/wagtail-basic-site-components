@@ -1,0 +1,13 @@
+{% load static core_tags wagtailcore_tags wagtailimages_tags %}
+
+{% if embedded_block %}
+    <div class="custom-snippet">
+    {%  if embedded_block.heading %}
+        <h3>{{ embedded_block.heading }}</h3>
+    {% endif %}
+
+        {{ embedded_block.text|richtext }}
+    </div>
+{% else %}
+    <div class="warning">EmbeddedBlock name does not match </div>
+{% endif %}

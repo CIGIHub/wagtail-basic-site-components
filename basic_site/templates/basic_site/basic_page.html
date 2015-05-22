@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+    {% if self.title %}
+        <h1>{{  self.title }}</h1>
+    {% endif %}
+    {% with header_tag='h1' %}
+        {% include "basic_site/basic_page_item.html" %}
+    {%  endwith %}
+{% endblock %}

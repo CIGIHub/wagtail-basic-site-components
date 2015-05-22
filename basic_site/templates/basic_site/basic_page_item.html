@@ -1,0 +1,11 @@
+{% load static core_tags wagtailcore_tags wagtailimages_tags %}
+
+<article>
+    {% if subpage.title %}
+        <{{ header_tag }}>{{ subpage.title }}</{{ header_tag }}>
+    {% endif %}
+
+    {% if subpage.body %}
+        {{ subpage.body|richtext }}
+    {% endif %}
+</article>

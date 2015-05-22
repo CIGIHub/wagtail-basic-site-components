@@ -1,0 +1,17 @@
+{% load static core_tags wagtailcore_tags wagtailimages_tags %}
+
+<div class="block">
+    {% if block_placement.block.heading %}
+        <h2>{{ block_placement.block.heading }}</h2>
+    {% endif %}
+
+    {% if block_placement.block.text %}
+        {{ block_placement.block.text|richtext }}
+    {% endif %}
+
+    {% if block_placement.block.image %}
+        <figure>
+            {% image block_placement.block.image width-200 %}
+        </figure>
+    {% endif %}
+</div>
