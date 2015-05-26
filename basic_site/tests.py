@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 from wagtail.tests.utils import WagtailTestUtils
 
-from . import models
+# from . import models
 
 # UniquelySlugable
 
@@ -29,8 +29,8 @@ class TestBasicBlockCreateView(TestCase, WagtailTestUtils):
 
     def post(self, post_data={}):
         return self.client.post(reverse('wagtailsnippets_create',
-                               args=('basic_site', 'basicblock')),
-                               post_data)
+                                        args=('basic_site', 'basicblock')),
+                                post_data)
 
     def test_simple(self):
         response = self.get()
