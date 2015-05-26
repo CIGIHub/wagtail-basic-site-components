@@ -1,0 +1,3 @@
+# Minimal requirements
+wagtail==1.0b2
+
