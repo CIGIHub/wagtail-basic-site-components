@@ -37,4 +37,5 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
+    test_suite='basic_site.runtests.runtests',
 )
