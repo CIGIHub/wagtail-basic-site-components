@@ -1,8 +1,10 @@
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 import re
 
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 from modelcluster.fields import ParentalKey
@@ -48,6 +50,7 @@ class BaseBlock(UniquelySlugable):
 
 # create a snippet for placement in sidebars
 @register_snippet
+@python_2_unicode_compatible
 class BasicBlock(BaseBlock):
 
     image = models.ForeignKey(
@@ -65,7 +68,7 @@ class BasicBlock(BaseBlock):
         ImageChooserPanel('image'),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -90,12 +93,13 @@ class BasePage(models.Model):
 
 
 # create a basic page type
+@python_2_unicode_compatible
 class BasicPage(Page, BasePage):
     search_fields = Page.search_fields + (
         index.SearchField('body'),
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} - {}".format(self.title, self.url)
 
 
@@ -108,6 +112,7 @@ BasicPage.content_panels = [
 
 
 # create a listing for basic pages
+@python_2_unicode_compatible
 class BasicPageListing(Page):
     subpage_types = ['BasicPage']
 
@@ -118,7 +123,7 @@ class BasicPageListing(Page):
 
         return subpages
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} - {}".format(self.title, self.url)  # create a snippet that is embedded directly into a template
 
     def embedded_content_for_search(self):
