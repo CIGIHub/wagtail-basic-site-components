@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include basic_site/templates *
+recursive-include basic_site/fixtures *
