@@ -85,16 +85,10 @@ class BasicBlockPlacement(Orderable, models.Model):
 
 
 # create a base page that adds a body field
+@python_2_unicode_compatible
 class BasePage(models.Model):
     body = RichTextField()
 
-    class Meta:
-        abstract = True
-
-
-# create a basic page type
-@python_2_unicode_compatible
-class BasicPage(Page, BasePage):
     search_fields = Page.search_fields + (
         index.SearchField('body'),
     )
@@ -102,12 +96,18 @@ class BasicPage(Page, BasePage):
     def __str__(self):
         return "{} - {}".format(self.title, self.url)
 
+    class Meta:
+        abstract = True
+
+
+# create a basic page type
+class BasicPage(Page, BasePage):
+    pass
 
 BasicPage.content_panels = [
     FieldPanel('title', classname="title"),
     FieldPanel('body', classname="full"),
     InlinePanel(BasicPage, 'blocks', label='Blocks'),
-
 ]
 
 
