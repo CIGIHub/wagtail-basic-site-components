@@ -9,7 +9,7 @@
 
 {% block content %}
   <h2>Search Results{% if request.GET.q %} for {{ request.GET.q }}{% endif %}</h2>
-  <ul>
+  <ul class="search-results">
     {% for result in search_results %}
       <li>
         <h4><a href="{% pageurl result.specific %}">{{ result.specific.title }}</a></h4>
