@@ -1,5 +1,4 @@
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 import re
 
@@ -8,13 +7,16 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 from modelcluster.fields import ParentalKey
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel,
+                                                StreamFieldPanel)
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
+
+from .fields import BodyField
 
 
 class UniquelySlugable(models.Model):
@@ -98,6 +100,32 @@ class BasePage(models.Model):
 
     class Meta:
         abstract = True
+
+
+# create a base page that adds a body field
+@python_2_unicode_compatible
+class BaseStreamPage(models.Model):
+    body = BodyField()
+
+    search_fields = Page.search_fields + (
+        index.SearchField('body'),
+    )
+
+    def __str__(self):
+        return "{} - {}".format(self.title, self.url)
+
+    class Meta:
+        abstract = True
+
+
+# create a basic stream page type
+class BasicStreamPage(Page, BaseStreamPage):
+    pass
+
+BasicStreamPage.content_panels = [
+    FieldPanel('title', classname="title"),
+    StreamFieldPanel('body'),
+]
 
 
 # create a basic page type
