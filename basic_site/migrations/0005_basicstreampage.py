@@ -12,7 +12,7 @@ import basic_site.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0001_squashed_0016_change_page_url_path_to_text_field'),
+        ('wagtailcore', '__latest__'),
         ('basic_site', '0004_basicblock_image'),
     ]
 
