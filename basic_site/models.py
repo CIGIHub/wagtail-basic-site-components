@@ -135,7 +135,7 @@ class BasicPage(Page, BasePage):
 BasicPage.content_panels = [
     FieldPanel('title', classname="title"),
     FieldPanel('body', classname="full"),
-    InlinePanel(BasicPage, 'blocks', label='Blocks'),
+    InlinePanel('blocks', label='Blocks'),
 ]
 
 
@@ -171,5 +171,5 @@ class BasicPageListing(Page):
 
 BasicPageListing.content_panels = [
     FieldPanel('title', classname="title"),
-    InlinePanel(BasicPageListing, 'blocks', label='Blocks'),
+    InlinePanel('blocks', label='Blocks'),
 ]
