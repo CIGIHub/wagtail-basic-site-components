@@ -23,12 +23,12 @@ class TestBasicBlockCreateView(TestCase, WagtailTestUtils):
         self.login()
 
     def get(self, params={}):
-        return self.client.get(reverse('wagtailsnippets_create',
+        return self.client.get(reverse('wagtailsnippets:create',
                                        args=('basic_site', 'basicblock')),
                                params)
 
     def post(self, post_data={}):
-        return self.client.post(reverse('wagtailsnippets_create',
+        return self.client.post(reverse('wagtailsnippets:create',
                                         args=('basic_site', 'basicblock')),
                                 post_data)
 
